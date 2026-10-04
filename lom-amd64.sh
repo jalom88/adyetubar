@@ -1,16 +1,16 @@
 #!/bin/bash
-# Zivpn UDP Module installer
+# Zivpn UDP Module installer - AMD64
 # modif by Adyetubar
 
 echo -e "Updating server"
 sudo apt-get update && apt-get upgrade -y
 systemctl stop zivpn.service 1> /dev/null 2> /dev/null
 echo -e "Downloading UDP Service"
-wget https://github.com/zahidbd2/udp-zivpn/releases/download/udp-zivpn_1.4.9/udp-zivpn-linux-amd64 -O /usr/local/bin/zivpn 1> /dev/null 2> /dev/null
+wget https://raw.githubusercontent.com/jalom88/adyetubar/main/udp-zivpn-linux-amd64 -O /usr/local/bin/zivpn 1> /dev/null 2> /dev/null
 chmod +x /usr/local/bin/zivpn
 mkdir /etc/zivpn 1> /dev/null 2> /dev/null
 
-# LINK REPO ANDA DI SINI:
+# LINK REPO ANDA SENDIRI:
 wget https://raw.githubusercontent.com/jalom88/adyetubar/main/config.json -O /etc/zivpn/config.json 1> /dev/null 2> /dev/null
 
 echo "Generating cert files:"
@@ -53,7 +53,6 @@ fi
 new_config_str="\"config\": [$(printf "\"%s\"," "${config[@]}" | sed 's/,$//')]"
 
 sed -i -E "s/\"config\": ?\[[[:space:]]*\"zi\"[[:space:]]*\]/${new_config_str}/g" /etc/zivpn/config.json
-
 
 systemctl enable zivpn.service
 systemctl start zivpn.service
