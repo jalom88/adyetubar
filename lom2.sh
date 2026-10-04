@@ -1,6 +1,6 @@
 #!/bin/bash
 # Zivpn UDP Module installer - ARM
-# Creator Zahid Islam
+# modif by ayah alma
 
 echo -e "Updating server"
 sudo apt-get update && apt-get upgrade -y
